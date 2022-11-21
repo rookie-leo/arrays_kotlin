@@ -1,18 +1,16 @@
 fun main() {
-    var maiorIdade = 0
-    val idades : IntArray = intArrayOf(20, 19, 33, 27)
+    val salarios : DoubleArray = doubleArrayOf(1500.00, 2300.99, 5000.0, 10000.11)
+    val aumento = 1.1
 
-    for (idade in idades) {
-        if (idade > maiorIdade) {
-            maiorIdade = idade
-        }
+    for (i in salarios.indices) {
+        salarios[i] = salarios[i] * aumento
     }
 
-    println(maiorIdade)
+    println(salarios.contentToString())
 
-    var menorIdade = maiorIdade
-    idades.forEach { idade -> if ( idade < menorIdade) menorIdade = idade }
+    salarios.forEachIndexed { i, salario ->
+        salarios[i] = salario * aumento
+    }
 
-    println(menorIdade)
-
+    println(salarios.contentToString())
 }
