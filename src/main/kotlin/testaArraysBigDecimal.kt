@@ -22,6 +22,22 @@ fun testaArraysBigDecimal() {
     }
 
     println("Gasto total em $meses mes(es): R$ $gastoTotal")
+
+    val media = salariosComAumento
+        .sorted()
+        .takeLast(3)
+        .toTypedArray()
+        .avarage()
+
+    val mediaMenoresSalarios = salariosComAumento
+        .sorted()
+        .take(3)
+        .toTypedArray()
+        .avarage()
+
+    println("A média dos tres maiores salarios é R$ $media")
+    println("A média dos tres menores salarios é R$ $mediaMenoresSalarios")
+
 }
 
 private fun calculaSalarioRelativo(salario: BigDecimal, aumento: BigDecimal): BigDecimal =
@@ -31,7 +47,7 @@ private fun calculaSalarioRelativo(salario: BigDecimal, aumento: BigDecimal): Bi
         salario + "500".toBigDecimal()
     }
 
-fun bigDecimalArrayOf(vararg valores : String) : Array<BigDecimal> {
+fun bigDecimalArrayOf(vararg valores: String): Array<BigDecimal> {
     return Array(valores.size) { i ->
         valores[i].toBigDecimal()
     }
@@ -41,4 +57,9 @@ fun Array<BigDecimal>.somatoria(): BigDecimal {
     return this.reduce { acumulador, valor ->
         acumulador + valor
     }
+}
+
+fun Array<BigDecimal>.avarage(): BigDecimal {
+    return if (this.isEmpty()) BigDecimal.ZERO
+    else this.somatoria() / this.size.toBigDecimal()
 }
