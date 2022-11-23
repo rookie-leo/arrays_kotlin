@@ -13,7 +13,15 @@ fun testaArraysBigDecimal() {
 
     println(salariosComAumento.contentToString())
 
-    println("Total gasto no pagamento de funcionarios: ${salarios.somatoria()}")
+    val gastoInicial = salarios.somatoria()
+    println("Total gasto no pagamento de funcionarios: R$ ${gastoInicial}")
+
+    var meses = 6.toBigDecimal()
+    val gastoTotal = salariosComAumento.fold(gastoInicial) { acumulador, salario ->
+        acumulador + (salario * meses).setScale(2, RoundingMode.UP)
+    }
+
+    println("Gasto total em $meses mes(es): R$ $gastoTotal")
 }
 
 private fun calculaSalarioRelativo(salario: BigDecimal, aumento: BigDecimal): BigDecimal =
