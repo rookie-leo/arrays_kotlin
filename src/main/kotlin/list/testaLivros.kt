@@ -47,6 +47,12 @@ fun testaLivros() {
     livros.sortedBy { it.titulo }.imprimeComMarcadores()
 
     livros.sortedBy { it.autor }.imprimeComMarcadores()
+
+    livros
+        .filter { it.autor.startsWith("J") }
+        .sortedBy { it.anoPublicacao }
+        .imprimeComMarcadores()
+
 }
 
 fun List<Livro>.imprimeComMarcadores() {
