@@ -1,45 +1,8 @@
 package list
 
 fun testaLivros() {
-    val livro1 = Livro(
-        titulo = "Grande Sertão: Veredas",
-        autor = "João Guimarães Rosa",
-        anoPublicacao = 1956
-    )
+    val livros: List<Livro> = listaLivros()
 
-    val livro2 = Livro(
-        titulo = "Minha vida de menina",
-        autor = "Helena Morley",
-        anoPublicacao = 1942,
-        editora = "Editora A"
-    )
-
-    val livro3 = Livro(
-        titulo = "Memórias Póstumas de Brás Cubas",
-        autor = "Machado de Assis",
-        anoPublicacao = 1881
-    )
-
-    val livro4 = Livro(
-        titulo = "Iracema",
-        autor = "José de Alencar",
-        anoPublicacao = 1865,
-        editora = "Editora B"
-    )
-
-    val livros = mutableListOf<Livro>(livro1, livro2, livro3, livro4)
-
-    livros.add(
-        Livro(
-            titulo = "Fortaleza Digital",
-            autor = "Dan Brown",
-            anoPublicacao = 1998,
-            editora = "St. Martin's Press"
-        )
-    )
-
-    livros.imprimeComMarcadores()
-    livros.remove(livro2)
     livros.imprimeComMarcadores()
 
     livros.sorted().imprimeComMarcadores() //ordena por anoPublicacao
@@ -53,10 +16,25 @@ fun testaLivros() {
         .sortedBy { it.anoPublicacao }
         .imprimeComMarcadores()
 
+    println()
+    println("Livros Nulos")
+    println()
+
+    val livrosNulos: List<Livro?> = listaLivrosNulos()
+
+    livrosNulos.imprimeComMarcadores()
+
+    livrosNulos.sortedBy { it?.titulo }.imprimeComMarcadores()
+
+    livrosNulos.sortedBy { it?.autor }.imprimeComMarcadores()
+
+
 }
 
-fun List<Livro>.imprimeComMarcadores() {
-    val textoFormatado = this.joinToString(separator = "\n") {
+fun List<Livro?>.imprimeComMarcadores() {
+    val textoFormatado = this
+        .filterNotNull()
+        .joinToString(separator = "\n") {
         " - ${it.titulo} de ${it.autor}"
     }
     println("################### Lista de Livros ###################\n$textoFormatado")
