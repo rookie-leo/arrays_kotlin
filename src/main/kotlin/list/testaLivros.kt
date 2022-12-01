@@ -16,18 +16,11 @@ fun testaLivros() {
         .sortedBy { it.anoPublicacao }
         .imprimeComMarcadores()
 
-    println()
-    println("Livros Nulos")
-    println()
-
-    val livrosNulos: List<Livro?> = listaLivrosNulos()
-
-    livrosNulos.imprimeComMarcadores()
-
-    livrosNulos.sortedBy { it?.titulo }.imprimeComMarcadores()
-
-    livrosNulos.sortedBy { it?.autor }.imprimeComMarcadores()
-
+    livros
+        .groupBy { it.editora ?: "Editora desconhecida" }
+        .forEach { editora, livro ->
+            println("$editora: ${livro.joinToString { it.titulo }}")
+        }
 
 }
 
