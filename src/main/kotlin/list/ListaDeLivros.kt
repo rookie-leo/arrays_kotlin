@@ -1,6 +1,6 @@
 package list
 
-fun listaLivros(): List<Livro> {
+fun listaLivros(): MutableList<Livro> {
     val livro1 = Livro(
         titulo = "Grande Sertão: Veredas",
         autor = "João Guimarães Rosa",
